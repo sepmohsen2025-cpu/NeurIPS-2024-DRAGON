@@ -11,6 +11,7 @@ class GNN(BaseGNN):
     super(GNN, self).__init__(opt, dataset, device)
     self.f = set_function(opt)
     block = set_block(opt)
+    print(device)
     time_tensor = torch.tensor([0, self.T]).to(device)
     self.odeblock = block(self.f, opt, dataset.data, device, t=time_tensor).to(device)
     # self.alpha_ode = nn.Parameter(torch.tensor(torch.tensor(0.1), requires_grad=True))

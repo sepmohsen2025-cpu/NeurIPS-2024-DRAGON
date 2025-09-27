@@ -3,7 +3,7 @@ import os
 parser = argparse.ArgumentParser()
 parser.add_argument('--use_cora_defaults', action='store_true',
                   help='Whether to run with best params for cora. Overrides the choice of dataset')
-parser.add_argument('--cuda', default=1, type=int)
+parser.add_argument('--cuda', default=0, type=int)
 # data args
 parser.add_argument('--dataset', type=str, default='twitch-gamer',
                   help='Cora, Citeseer, Pubmed, Computers, Photo, CoauthorCS, ogbn-arxiv,chameleon, squirrel,'
