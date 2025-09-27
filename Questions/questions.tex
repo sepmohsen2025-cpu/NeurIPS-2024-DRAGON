@@ -1,0 +1,64 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{geometry}
+\geometry{margin=2.5cm}
+
+\begin{document}
+	
+	\begin{center}
+		{\LARGE \textbf{Questions Regarding the DRAGON Code Release}} \\[0.2cm]
+		{\large Related to the paper \textit{``DRAGON: Discrete-Fractional Graph Neural Operators''}} \\
+		OpenReview ID: \href{https://openreview.net/forum?id=kEQFjKqiqM}{kEQFjKqiqM}
+	\end{center}
+	
+	\vspace{0.5cm}
+	
+	I am very interested in reproducing the results of the DRAGON paper and studying the methodology further. 
+	While going through the GitHub repository, I encountered some ambiguities and missing details. 
+	Below is a structured list of questions that I kindly ask the authors to clarify.
+	
+	\section*{1. Environment and Dependencies}
+	\begin{itemize}[leftmargin=1.5cm]
+		\item Could you please provide the exact \texttt{environment.yaml} or \texttt{requirements.txt} file (Python, CUDA, PyTorch, PyG, torchdiffeq, torchcde, torchfde, etc.)?
+		\item Which commit/version of \texttt{torchfde} was used?
+	\end{itemize}
+	
+	\section*{2. Missing Files and Block Types}
+	\begin{itemize}[leftmargin=1.5cm]
+		\item Several referenced files are missing: \texttt{base\_classes.py}, \texttt{best\_params.py}, \texttt{heterophilic.py}, \texttt{regularized\_ODE\_function.py}. Will these be released or have they been renamed?
+		\item Configurations mention \texttt{ConstantODEblock\_FRAC\_MULTI\_ORDER}, but only constant fracorder blocks appear in code. Which block names are correct?
+	\end{itemize}
+	
+	\section*{3. Datasets and Preprocessing}
+	\begin{itemize}[leftmargin=1.5cm]
+		\item For Twitch, which subsets (e.g., \texttt{DE}, \texttt{ENGB}, etc.) or versions did you use?
+		\item What preprocessing steps (normalization, self-loops, isolated nodes) were applied?
+		\item Are train/validation/test splits fixed or random? If fixed, could you provide split files or seeds?
+	\end{itemize}
+	
+	\section*{4. Hyperparameters and Training Protocol}
+	\begin{itemize}[leftmargin=1.5cm]
+		\item Could you share the best hyperparameters per dataset (lr, wd, dropout, hidden size, epochs, scheduler, patience, gradient clipping)?
+		\item How many seeds/runs were averaged, and which seeds?
+		\item Was any learning rate scheduler used?
+	\end{itemize}
+	
+	\section*{5. Fractional / Multi-Order Settings}
+	\begin{itemize}[leftmargin=1.5cm]
+		\item Are fractional orders $\alpha$ fixed or trainable? How are they initialized and constrained?
+		\item How are multi-order weights normalized (softmax, simplex, etc.)?
+		\item Which solver was used (step size, rtol/atol, adjoint method)?
+		\item Any numerical stability tricks (regularization, smoothing, clipping)?
+	\end{itemize}
+	
+	\section*{6. Evaluation Protocol}
+	\begin{itemize}[leftmargin=1.5cm]
+		\item Which loss function was used (cross-entropy, label smoothing, weights)?
+		\item Which metrics (accuracy, F1, etc.), and on validation or test?
+		\item Any post-processing or calibration applied?
+		\item Could you share reference outputs/logs for verification?
+	\end{itemize}
+	
+\end{document}
